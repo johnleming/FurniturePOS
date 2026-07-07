@@ -22,19 +22,19 @@ while (running)
             break;
 
         case "3":
-            Console.WriteLine("Delete Furniture (Coming Soon)");
+            manager.DeleteFurniture();
             break;
 
         case "4":
-            Console.WriteLine("Open Furniture (Coming Soon)");
+            manager.OpenFurniture();
             break;
 
         case "5":
-            Console.WriteLine("Copy Furniture (Coming Soon)");
+            manager.CopyFurniture();
             break;
 
         case "6":
-            Console.WriteLine("Paste Furniture (Coming Soon)");
+            manager.PasteFurniture();
             break;
 
         case "7":

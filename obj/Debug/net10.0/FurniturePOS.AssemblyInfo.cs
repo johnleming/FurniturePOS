@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FurniturePOS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4567afec846ac619fc639f98634e72cf21d780f9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf8a118cbf247e36b283ef623ba6688ab8dee2a0")]
 [assembly: System.Reflection.AssemblyProductAttribute("FurniturePOS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FurniturePOS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

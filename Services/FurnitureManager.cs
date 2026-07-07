@@ -5,7 +5,18 @@ namespace FurniturePOS.Services;
 public class FurnitureManager
 {
     private List<Furniture> furnitureList = new();
-
+    private Furniture? clipboard;
+    private Furniture? FindFurnitureById(int id)
+    {
+        return furnitureList.Find(f => f.Id == id);
+    }
+    private void ReorderIds()
+    {
+        for (int i = 0; i < furnitureList.Count; i++)
+        {
+            furnitureList[i].Id = i + 1;
+        }
+    }
     public FurnitureManager()
     {
         furnitureList.Add(new Furniture
@@ -26,7 +37,6 @@ public class FurnitureManager
             Stock = 3
         });
     }
-
     public void ShowAll()
     {
         Console.Clear();
@@ -92,4 +102,140 @@ public class FurnitureManager
 
         Console.WriteLine("\nFurniture added successfully!");
     }
+    public void DeleteFurniture()
+    {
+        
+        Console.Clear();
+
+        Console.WriteLine("===== Delete Furniture =====\n");
+
+        Console.WriteLine("===== Furniture List =====\n");
+
+        if (furnitureList.Count == 0)
+        {
+            Console.WriteLine("No furniture available.");
+            return;
+        }
+
+        foreach (var item in furnitureList)
+        {
+            Console.WriteLine($"ID       : {item.Id}");
+            Console.WriteLine($"Name     : {item.Name}");
+            Console.WriteLine($"Category : {item.Category}");
+            Console.WriteLine($"Price    : Rp {item.Price:N0}");
+            Console.WriteLine($"Stock    : {item.Stock}");
+            Console.WriteLine("------------------------------");
+        }
+        
+
+        Console.Write("Enter Furniture ID: ");
+
+
+        if (!int.TryParse(Console.ReadLine(), out int id))
+        {
+            Console.WriteLine("Invalid ID!");
+            return;
+        }
+
+        Furniture? furniture = FindFurnitureById(id);
+
+        if (furniture == null)
+        {
+            Console.WriteLine("Furniture not found!");
+            return;
+        }
+
+        furnitureList.Remove(furniture);
+
+        ReorderIds();
+
+        Console.WriteLine("\nFurniture deleted successfully!");
+    }
+    public void OpenFurniture()
+    {
+        Console.Clear();
+
+        Console.WriteLine("===== Open Furniture =====\n");
+
+        Console.Write("Enter Furniture ID: ");
+
+        if (!int.TryParse(Console.ReadLine(), out int id))
+        {
+            Console.WriteLine("Invalid ID!");
+            return;
+        }
+
+        Furniture? furniture = FindFurnitureById(id);
+
+        if (furniture == null)
+        {
+            Console.WriteLine("Furniture not found!");
+            return;
+        }
+
+        Console.WriteLine("\n===== Furniture Details =====");
+        Console.WriteLine($"ID       : {furniture.Id}");
+        Console.WriteLine($"Name     : {furniture.Name}");
+        Console.WriteLine($"Category : {furniture.Category}");
+        Console.WriteLine($"Price    : Rp {furniture.Price:N0}");
+        Console.WriteLine($"Stock    : {furniture.Stock}");
+    }
+    public void CopyFurniture()
+    {
+        Console.Clear();
+
+        Console.WriteLine("===== Copy Furniture =====\n");
+
+        Console.Write("Enter Furniture ID: ");
+
+        if (!int.TryParse(Console.ReadLine(), out int id))
+        {
+            Console.WriteLine("Invalid ID!");
+            return;
+        }
+
+        Furniture? furniture = FindFurnitureById(id);
+
+        if (furniture == null)
+        {
+            Console.WriteLine("Furniture not found!");
+            return;
+        }
+
+        clipboard = new Furniture
+        {
+            Name = furniture.Name,
+            Category = furniture.Category,
+            Price = furniture.Price,
+            Stock = furniture.Stock
+        };
+
+        Console.WriteLine($"\n'{clipboard.Name}' copied successfully!");
+    }
+    public void PasteFurniture()
+    {
+        Console.Clear();
+
+        Console.WriteLine("===== Paste Furniture =====\n");
+
+        if (clipboard == null)
+        {
+            Console.WriteLine("Clipboard is empty!");
+            return;
+        }
+
+        Furniture newFurniture = new Furniture
+        {
+            Id = furnitureList.Count + 1,
+            Name = $"{clipboard.Name} Copy {furnitureList.Count}",
+            Category = clipboard.Category,
+            Price = clipboard.Price,
+            Stock = clipboard.Stock
+        };
+
+        furnitureList.Add(newFurniture);
+
+        Console.WriteLine("Furniture pasted successfully!");
+    }
+
 }
