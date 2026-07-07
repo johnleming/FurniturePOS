@@ -1,0 +1,14 @@
+D:\Code\POS Menu\FurniturePOS\bin\Release\net10.0\FurniturePOS.exe
+D:\Code\POS Menu\FurniturePOS\bin\Release\net10.0\FurniturePOS.deps.json
+D:\Code\POS Menu\FurniturePOS\bin\Release\net10.0\FurniturePOS.runtimeconfig.json
+D:\Code\POS Menu\FurniturePOS\bin\Release\net10.0\FurniturePOS.dll
+D:\Code\POS Menu\FurniturePOS\bin\Release\net10.0\FurniturePOS.pdb
+D:\Code\POS Menu\FurniturePOS\obj\Release\net10.0\FurniturePOS.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\POS Menu\FurniturePOS\obj\Release\net10.0\FurniturePOS.AssemblyInfoInputs.cache
+D:\Code\POS Menu\FurniturePOS\obj\Release\net10.0\FurniturePOS.AssemblyInfo.cs
+D:\Code\POS Menu\FurniturePOS\obj\Release\net10.0\FurniturePOS.csproj.CoreCompileInputs.cache
+D:\Code\POS Menu\FurniturePOS\obj\Release\net10.0\FurniturePOS.dll
+D:\Code\POS Menu\FurniturePOS\obj\Release\net10.0\refint\FurniturePOS.dll
+D:\Code\POS Menu\FurniturePOS\obj\Release\net10.0\FurniturePOS.pdb
+D:\Code\POS Menu\FurniturePOS\obj\Release\net10.0\FurniturePOS.genruntimeconfig.cache
+D:\Code\POS Menu\FurniturePOS\obj\Release\net10.0\ref\FurniturePOS.dll

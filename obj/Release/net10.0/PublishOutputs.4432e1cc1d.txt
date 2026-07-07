@@ -1,0 +1,5 @@
+D:\Code\POS Menu\FurniturePOS\bin\Release\net10.0\publish\FurniturePOS.exe
+D:\Code\POS Menu\FurniturePOS\bin\Release\net10.0\publish\FurniturePOS.dll
+D:\Code\POS Menu\FurniturePOS\bin\Release\net10.0\publish\FurniturePOS.deps.json
+D:\Code\POS Menu\FurniturePOS\bin\Release\net10.0\publish\FurniturePOS.runtimeconfig.json
+D:\Code\POS Menu\FurniturePOS\bin\Release\net10.0\publish\FurniturePOS.pdb
