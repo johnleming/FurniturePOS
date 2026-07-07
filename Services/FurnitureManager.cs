@@ -17,6 +17,22 @@ public class FurnitureManager
             furnitureList[i].Id = i + 1;
         }
     }
+    private string ReadRequired(string label)
+    {
+        while (true)
+        {
+            Console.Write($"{label}: ");
+
+            string? input = Console.ReadLine();
+
+            if (!string.IsNullOrWhiteSpace(input))
+                return input;
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Input cannot be empty!");
+            Console.ResetColor();
+        }
+    }
     public FurnitureManager()
     {
         furnitureList.Add(new Furniture
@@ -36,6 +52,24 @@ public class FurnitureManager
             Price = 1500000,
             Stock = 3
         });
+
+        furnitureList.Add(new Furniture
+        {
+            Id = 3,
+            Name = "Metal Rack",
+            Category = "Rack",
+            Price = 800000,
+            Stock = 6769
+        });
+
+        furnitureList.Add(new Furniture
+        {
+            Id = 4,
+            Name = "Cupboard",
+            Category = "Cupboard",
+            Price = 1000000,
+            Stock = 420
+        });
     }
     public void ShowAll()
     {
@@ -45,18 +79,21 @@ public class FurnitureManager
 
         if (furnitureList.Count == 0)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("No furniture available.");
+            Console.ResetColor();
             return;
         }
 
+        Console.WriteLine(
+            $"{"ID",-5} {"Name",-20} {"Category",-15} {"Price",-15} {"Stock",-5}");
+
+        Console.WriteLine(new string('-', 65));
+
         foreach (var item in furnitureList)
         {
-            Console.WriteLine($"ID       : {item.Id}");
-            Console.WriteLine($"Name     : {item.Name}");
-            Console.WriteLine($"Category : {item.Category}");
-            Console.WriteLine($"Price    : Rp {item.Price:N0}");
-            Console.WriteLine($"Stock    : {item.Stock}");
-            Console.WriteLine("------------------------------");
+            Console.WriteLine(
+                $"{item.Id,-5} {item.Name,-20} {item.Category,-15} Rp {item.Price,-10:N0} {item.Stock,-5}");
         }
     }
     public void AddFurniture ()
@@ -65,11 +102,9 @@ public class FurnitureManager
 
         Console.WriteLine("===== Add Furniture =====\n");
 
-        Console.Write("Furniture Name : ");
-        string name = Console.ReadLine()!;
+        string name = ReadRequired("Furniture Name");
 
-        Console.Write("Category       : ");
-        string category = Console.ReadLine()!;
+        string category = ReadRequired("Category");
 
         double price;
         while (true)
@@ -113,20 +148,22 @@ public class FurnitureManager
 
         if (furnitureList.Count == 0)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("No furniture available.");
+            Console.ResetColor();
             return;
         }
 
+        Console.WriteLine(
+            $"{"ID",-5} {"Name",-20} {"Category",-15} {"Price",-15} {"Stock",-5}");
+
+        Console.WriteLine(new string('-', 65));
+
         foreach (var item in furnitureList)
         {
-            Console.WriteLine($"ID       : {item.Id}");
-            Console.WriteLine($"Name     : {item.Name}");
-            Console.WriteLine($"Category : {item.Category}");
-            Console.WriteLine($"Price    : Rp {item.Price:N0}");
-            Console.WriteLine($"Stock    : {item.Stock}");
-            Console.WriteLine("------------------------------");
+            Console.WriteLine(
+                $"{item.Id,-5} {item.Name,-20} {item.Category,-15} Rp {item.Price,-10:N0} {item.Stock,-5}");
         }
-        
 
         Console.Write("Enter Furniture ID: ");
 
@@ -237,5 +274,123 @@ public class FurnitureManager
 
         Console.WriteLine("Furniture pasted successfully!");
     }
+    public void SortAscending()
+    {
+        Console.Clear();
 
+        furnitureList = furnitureList
+            .OrderBy(f => f.Name)
+            .ToList();
+
+        ReorderIds();
+
+        Console.WriteLine("Furniture sorted A-Z successfully!");
+    }
+    public void SortDescending()
+    {
+        Console.Clear();
+
+        furnitureList = [.. furnitureList.OrderByDescending(f => f.Name)];
+
+        ReorderIds();
+
+        Console.WriteLine("Furniture sorted Z-A successfully!");
+    }
+
+    public void Modify()
+    {
+        Console.Clear();
+
+        Console.WriteLine("===== Modify Furniture =====");
+        Console.WriteLine("===== Furniture List =====\n");
+
+        if (furnitureList.Count == 0)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("No furniture available.");
+            Console.ResetColor();
+            return;
+        }
+
+        Console.WriteLine(
+            $"{"ID",-5} {"Name",-20} {"Category",-15} {"Price",-15} {"Stock",-5}");
+
+        Console.WriteLine(new string('-', 65));
+
+        foreach (var item in furnitureList)
+        {
+            Console.WriteLine(
+                $"{item.Id,-5} {item.Name,-20} {item.Category,-15} Rp {item.Price,-10:N0} {item.Stock,-5}");
+        }
+        Console.WriteLine("Choose which one do you wanna modify? Choose the ID");
+
+        if (!int.TryParse(Console.ReadLine(), out int id))
+        {
+            Console.WriteLine("Invalid ID!");
+            return;
+        }
+
+        Furniture? ModFurniture = FindFurnitureById(id);
+
+        if (ModFurniture == null)
+        {
+            Console.WriteLine("Furniture not found!");
+            return;
+        }
+
+        ReorderIds();
+
+        Console.WriteLine("\nFurniture modified successfully!");
+    }
+    public void ModifyLastFurniture()
+    {
+        Console.Clear();
+
+        if (furnitureList.Count == 0)
+        {
+            Console.WriteLine("No furniture available!");
+            return;
+        }
+
+        Furniture lastFurniture = furnitureList.Last();
+
+        Console.WriteLine("===== Modify Last Furniture =====");
+        Console.WriteLine($"Current Name     : {lastFurniture.Name}");
+        Console.WriteLine($"Current Category : {lastFurniture.Category}");
+        Console.WriteLine($"Current Price    : {lastFurniture.Price}");
+        Console.WriteLine($"Current Stock    : {lastFurniture.Stock}");
+        Console.WriteLine();
+
+        Console.Write("New Name : ");
+        lastFurniture.Name = Console.ReadLine()!;
+
+        Console.Write("New Category : ");
+        lastFurniture.Category = Console.ReadLine()!;
+
+        double price;
+        while (true)
+        {
+            Console.Write("New Price : ");
+            if (double.TryParse(Console.ReadLine(), out price))
+                break;
+
+            Console.WriteLine("Invalid price!");
+        }
+
+        lastFurniture.Price = price;
+
+        int stock;
+        while (true)
+        {
+            Console.Write("New Stock : ");
+            if (int.TryParse(Console.ReadLine(), out stock))
+                break;
+
+            Console.WriteLine("Invalid stock!");
+        }
+
+        lastFurniture.Stock = stock;
+
+        Console.WriteLine("\nLast furniture updated successfully!");
+    }
 }

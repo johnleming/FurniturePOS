@@ -38,15 +38,19 @@ while (running)
             break;
 
         case "7":
-            Console.WriteLine("Sort A-Z (Coming Soon)");
+            manager.SortAscending();
             break;
 
         case "8":
-            Console.WriteLine("Sort Z-A (Coming Soon)");
+            manager.SortDescending();
             break;
 
         case "9":
-            Console.WriteLine("Modify Last (Coming Soon)");
+            manager.Modify();
+            break;
+
+        case "10":
+            manager.ModifyLastFurniture();
             break;
 
         case "0":

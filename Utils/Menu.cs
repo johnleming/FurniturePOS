@@ -19,7 +19,8 @@ public static class Menu
         Console.WriteLine("6. Paste Furniture");
         Console.WriteLine("7. Sort A-Z");
         Console.WriteLine("8. Sort Z-A");
-        Console.WriteLine("9. Modify Last");
+        Console.WriteLine("9. Modify");
+        Console.WriteLine("10. Modify Last");
         Console.WriteLine("0. Exit");
         Console.WriteLine("==============================");
         Console.Write("Choose: ");

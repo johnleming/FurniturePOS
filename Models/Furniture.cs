@@ -1,4 +1,5 @@
 namespace FurniturePOS.Models;
+using System.Linq;
 
 public class Furniture
 {
