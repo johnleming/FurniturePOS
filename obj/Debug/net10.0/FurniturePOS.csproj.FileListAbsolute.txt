@@ -12,3 +12,4 @@ D:\Code\POS Menu\FurniturePOS\obj\Debug\net10.0\refint\FurniturePOS.dll
 D:\Code\POS Menu\FurniturePOS\obj\Debug\net10.0\FurniturePOS.pdb
 D:\Code\POS Menu\FurniturePOS\obj\Debug\net10.0\FurniturePOS.genruntimeconfig.cache
 D:\Code\POS Menu\FurniturePOS\obj\Debug\net10.0\ref\FurniturePOS.dll
+D:\Code\POS Menu\FurniturePOS\obj\Debug\net10.0\FurniturePOS.sourcelink.json

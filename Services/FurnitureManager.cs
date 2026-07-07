@@ -29,7 +29,15 @@ public class FurnitureManager
 
     public void ShowAll()
     {
-        Console.WriteLine("\n===== Furniture List =====");
+        Console.Clear();
+
+        Console.WriteLine("===== Furniture List =====\n");
+
+        if (furnitureList.Count == 0)
+        {
+            Console.WriteLine("No furniture available.");
+            return;
+        }
 
         foreach (var item in furnitureList)
         {
@@ -38,7 +46,50 @@ public class FurnitureManager
             Console.WriteLine($"Category : {item.Category}");
             Console.WriteLine($"Price    : Rp {item.Price:N0}");
             Console.WriteLine($"Stock    : {item.Stock}");
-            Console.WriteLine("----------------------------");
+            Console.WriteLine("------------------------------");
         }
+    }
+    public void AddFurniture ()
+    {
+        Console.Clear();
+
+        Console.WriteLine("===== Add Furniture =====\n");
+
+        Console.Write("Furniture Name : ");
+        string name = Console.ReadLine()!;
+
+        Console.Write("Category       : ");
+        string category = Console.ReadLine()!;
+
+        double price;
+        while (true)
+        {
+            Console.Write("Price          : ");
+            if (double.TryParse(Console.ReadLine(), out price))
+                break;
+
+            Console.WriteLine("Invalid price. Please enter a number.");
+        }
+
+        int stock;
+        while (true)
+        {
+            Console.Write("Stock          : ");
+            if (int.TryParse(Console.ReadLine(), out stock))
+                break;
+
+            Console.WriteLine("Invalid stock. Please enter a number.");
+        }
+        Furniture furniture = new Furniture
+        {
+            Id = furnitureList.Count + 1,
+            Name = name,
+            Category = category,
+            Price = price,
+            Stock = stock
+        };
+        furnitureList.Add(furniture);
+
+        Console.WriteLine("\nFurniture added successfully!");
     }
 }
