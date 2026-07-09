@@ -296,13 +296,13 @@ public class FurnitureManager
 
         Console.WriteLine("Furniture sorted Z-A successfully!");
     }
-
+    // Number 9. Modify
     public void Modify()
     {
         Console.Clear();
 
         Console.WriteLine("===== Modify Furniture =====");
-        Console.WriteLine("===== Furniture List =====\n");
+        Console.WriteLine("===== Furniture List =======\n");
 
         if (furnitureList.Count == 0)
         {
@@ -322,7 +322,8 @@ public class FurnitureManager
             Console.WriteLine(
                 $"{item.Id,-5} {item.Name,-20} {item.Category,-15} Rp {item.Price,-10:N0} {item.Stock,-5}");
         }
-        Console.WriteLine("Choose which one do you wanna modify? Choose the ID");
+        
+        Console.Write("\nWhich one do you wanna modify? (ID): ");
 
         if (!int.TryParse(Console.ReadLine(), out int id))
         {
@@ -330,13 +331,43 @@ public class FurnitureManager
             return;
         }
 
-        Furniture? ModFurniture = FindFurnitureById(id);
+        Furniture? modFurniture = FindFurnitureById(id);
 
-        if (ModFurniture == null)
+        if (modFurniture == null)
         {
             Console.WriteLine("Furniture not found!");
             return;
         }
+
+        Console.Write("New Name : ");
+        modFurniture.Name = Console.ReadLine()!;
+
+        Console.Write("New Category : ");
+        modFurniture.Category = Console.ReadLine()!;
+
+        double price;
+        while (true)
+        {
+            Console.Write("New Price : ");
+            if (double.TryParse(Console.ReadLine(), out price))
+                break;
+
+            Console.WriteLine("Invalid price!");
+        }
+
+        modFurniture.Price = price;
+
+        int stock;
+        while (true)
+        {
+            Console.Write("New Stock : ");
+            if (int.TryParse(Console.ReadLine(), out stock))
+                break;
+
+            Console.WriteLine("Invalid stock!");
+        }
+
+        modFurniture.Stock = stock;
 
         ReorderIds();
 
